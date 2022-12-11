@@ -6,40 +6,60 @@
 
 
 
-<h1>Addition</h1>
+
+
+<div class="mt-4 p-5 bg-dark text-white rounded  container">
+
+<h1 class="mt-4 p-5 bg-success text-white rounded row justify-content-center"> Online Calculator <h1>
+
+
+<h2>Addition</h2> 
 <form action="addition" method="POST">
     {% csrf_token %}
-
-    Enter first number: <input type="text" name="numberOne"><br><br>
-    Enter second number: <input type="text" name="numberTwo"><br><br>
-    <input type="submit">
+    <div class="mb-3 mt-3">
+    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
+    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
+    <input class="btn btn-success"  type="submit" name ="additionButton">
+    </div>
 </form>
 
+<h2 class="text-success"> Result = {{result}} </h2>
+
+<div >
 <h2>Subtraction</h2>
-<form action="Subtraction" method="POST">
+<form  action="Subtraction" method="POST">
     {% csrf_token %}
 
-    Enter first number: <input type="text" name="numberOne"><br><br>
-    Enter second number: <input type="text" name="numberTwo"><br><br>
-    <input type="submit">
+    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
+    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
+    <input class="btn btn-success" type="submit">
 </form>
-Division
-<h1>Division</h1>
+</div>
+
+<h2 class="text-success"> Result = {{result}} </h2>
+
+<h2>Division</h2>
 <form action="Division" method="POST">
     {% csrf_token %}
 
-    Enter first number: <input type="text" name="numberOne"><br><br>
-    Enter second number: <input type="text" name="numberTwo"><br><br>
-    <input type="submit">
+    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
+    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
+    <input class="btn btn-success " type="submit">
 </form>
 
-<h1>Multiplication</h1>
-<form action="Multiplication" method="POST">
+
+<h2 class="text-success"> Result = {{result}} </h2>
+
+<h2>Multiplication</h2>
+<form  action="Multiplication" method="POST">
     {% csrf_token %}
 
-    Enter first number: <input type="text" name="numberOne"><br><br>
-    Enter second number: <input type="text" name="numberTwo"><br><br>
-    <input type="submit">
+    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
+    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
+    <input class="btn btn-success " type="submit">
 </form>
+</div>
+
+<h2 class="text-success"> Result = {{result}} </h2>
 
 {% endblock %}
