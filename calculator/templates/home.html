@@ -1,6 +1,10 @@
 {% extends 'basic.html' %}
 
+
 {% block content %}
+
+
+
 
 <h1>Addition</h1>
 <form action="addition" method="POST">
@@ -11,7 +15,7 @@
     <input type="submit">
 </form>
 
-<h1>Subtraction</h1>
+<h2>Subtraction</h2>
 <form action="Subtraction" method="POST">
     {% csrf_token %}
 
