@@ -4,62 +4,162 @@
 {% block content %}
 
 
+<body id="page-top">
+        
+
+    <header class="masthead d-flex align-items-center" >
+        <div class="container px-4 px-lg-5 text-center">
+            <h1 class="mb-1">Online Diet Calculator</h1>
+            <h3 class="mb-5"><em>Calculator made to help with your diet</em></h3>
+            <a class="btn btn-primary btn-xl" href="#about">Calculate</a>
+        </div>
+    </header>
 
 
+    <section class="content-section bg-primary text-white text-center" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h3 class="text-secondary mb-0">Services</h3>
+                <h2 class="mb-5">Calculate your BMR</h2>
+                <h3 class="mb-5"><em>BMR is calculated using the formula: activity rate factor x {66 + [(13.7 x Weight(kg)) + ( 5 x Height(cm)) – (6.8 x Age(years))]}</em></h3>
+                <h3 class ="mb-5">Basal metabolic rate (BMR) is the amount of energy needed to maintain the body's vital functions over a 24-hour period. It is measured in calories, which is the energy extracted by our body from macronutrients (carbohydrates, proteins and total fats).</h3>
+                <form action="addition" method="POST" >
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    Enter your height: <input type="text" name="height" placeholder="Height in CM"><br><br>
+                    Enter your age:    <input type="text" name="age" placeholder="Age"><br><br>
+                    <input class="btn btn-success"  type="submit" name ="BMRButton">
+                        {% if  resultBMR > 0 %}
+                        <h4 class="text-warning"> BMR = {{resultBMR}} calories spent  </h4>
+                        <h4 class="text-warning"> Cutting = {{resultCutting}} calories to eat </h4>
+                        <h4 class="text-warning"> Bulking = {{resultBulking}} calories to eat</h4>
+                        {% endif %}
 
-
-<div class="mt-4 p-5 bg-dark text-white rounded  container">
-
-<h1 class="mt-4 p-5 bg-success text-white rounded row justify-content-center"> Online Calculator <h1>
-
-
-<h2>Addition</h2> 
-<form action="addition" method="POST">
-    {% csrf_token %}
-    <div class="mb-3 mt-3">
-    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
-    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
-    <input class="btn btn-success"  type="submit" name ="additionButton">
-    </div>
+               
+                    <h4 class="text-warning">
+            </div>
 </form>
+            </div>
+        </div>
+    </section>
 
-<h2 class="text-success"> Result = {{result}} </h2>
-
-<div >
-<h2>Subtraction</h2>
-<form  action="Subtraction" method="POST">
-    {% csrf_token %}
-
-    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
-    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
-    <input class="btn btn-success" type="submit">
+     <section class="content-section bg-primary text-white text-center">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h2 class="mb-5">Calculate your daily water drink</h2>
+                <h3 class="mb-5"><em>The amount of water intake is calculated using the formula: weight * 35ML </em></h3>
+                <form action="Subtraction" method="POST" >
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    <input class="btn btn-success"  type="submit" name ="WaterButton">
+                    {% if  resultWater > 0 %}
+                    <h4 class= "text-warning"> Water = {{resultWater}}L </h4>
+                        {% endif %}
+            </div>
 </form>
-</div>
+            </div>
+        </div>
+    </section>
 
-<h2 class="text-success"> Result = {{result}} </h2>
-
-<h2>Division</h2>
-<form action="Division" method="POST">
-    {% csrf_token %}
-
-    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
-    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
-    <input class="btn btn-success " type="submit">
+    <section class="content-section bg-primary text-white text-center">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h2 class="mb-5">Calculate your daily protein eat</h2>
+                <h3 class="mb-5"><em>The amount of protein intake is calculated using the formula: weight * 0.8 </em></h3>
+                <form action="Division" method="POST" >
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    <input class="btn btn-success"  type="submit" name ="ProteinButton">
+                    {% if  resultProtein > 0 %}
+                    <h4 class="text-warning"> Protein = {{resultProtein}}g </h4>
+                        {% endif %}
+            </div>
 </form>
+            </div>
+        </div>
+    </section>
 
 
-<h2 class="text-success"> Result = {{result}} </h2>
-
-<h2>Multiplication</h2>
-<form  action="Multiplication" method="POST">
-    {% csrf_token %}
-
-    Enter first number: <input type="text" name="numberOne" placeholder="Type a number"><br><br>
-    Enter second number: <input type="text" name="numberTwo" placeholder="Type a number"><br><br>
-    <input class="btn btn-success " type="submit">
+    <section class="content-section bg-primary text-white text-center">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h2 class="mb-5">Calculate your daily carbohydrate eat</h2>
+                <h3 class="mb-5"><em>The amount of protein intake is calculated using the formula: weight * 1 </em></h3>
+                <form action="Multiplication" method="POST" >
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    <input class="btn btn-success"  type="submit" name ="ProteinButton">
+                    {% if  resultCarbs > 0 %}
+                    <h4 class="text-warning"> Carbohydrate = {{resultCarbs}}g </h4>
+                        {% endif %}
+            </div>
 </form>
-</div>
+            </div>
+        </div>
+    </section>
 
-<h2 class="text-success"> Result = {{result}} </h2>
+    <section class="content-section bg-primary text-white text-center">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h2 class="mb-5">Calculate your daily fat eat</h2>
+                <h3 class="mb-5"><em>The amount of protein intake is calculated using the formula: weight * 0.4 </em></h3>
+                <form action="Fat" method="POST" >
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    <input class="btn btn-success"  type="submit" name ="ProteinButton">
+                    {% if  resultFat > 0 %}
+                    <h4 class="text-warning"> Fat = {{resultFat}}g </h4>
+                        {% endif %}
+                    
+            </div>
+</form>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section bg-primary text-white text-center">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h2 class="mb-5">Calculate your Body Mass Index(BMI)</h2>
+                <h3 class="mb-5"><em>The BMI  is calculated using the formula: weight / (height * height) </em></h3>
+                <form onsubmit=event() action="IMC" method="POST" >
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    Enter your height: <input type="text" name="height" placeholder="Height in M"><br><br>
+                    <button class="btn btn-success"  type="button" name ="ProteinButton"></button>
+                    
+                    <script>function(event){
+                        event.preventDefault()    
+                    }
+                    </script>
+
+
+                    {% if  resultIMC > 0 %}
+                    <h4 class="text-warning"> Your IMC is: {{resultIMC}} </h4>
+                    According to the World Health Organization, your BMI is considered {{mensagem}} for your height.   
+                        {% endif %}
+
+            </div>
+</form>
+            </div>
+        </div>
+    </section>
+   
+    
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="scripts/index.js"></script>
+</body>
+
 
 {% endblock %}

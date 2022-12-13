@@ -69,8 +69,8 @@ TEMPLATES = [
     },
 ]
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'image') 
-MEDIA_URL = '/image/'
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'img') 
+MEDIA_URL = 'assets/img/'
 
 WSGI_APPLICATION = 'calculator.wsgi.application'
 

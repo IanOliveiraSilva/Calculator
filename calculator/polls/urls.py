@@ -10,4 +10,6 @@ urlpatterns = [
     path('Subtraction', viewSubtraction, name='Subtraction'),
     path('Division', viewDivision, name='Division'),
     path('Multiplication', viewMultiplication, name='Multiplication'),
+    path('Fat', viewFat, name='Fat'),
+    path('IMC', viewIMC, name='IMC'),
 ]
