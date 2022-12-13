@@ -4,17 +4,36 @@ from django.shortcuts import render
 def viewHome(request):
     return render(request, "home.html")
 
+
+
+
 def viewAddition(request):
     weight = request.POST['weight']
     height = request.POST['height']
     age = request.POST['age']
+    activityLevel = request.POST.get('activityLevel')
+    sexo = request.POST.get('sexo')
+    options_dict = {"Sedentários": 1.2, "Levemente ativo":1.375, "Moderadamente ativo":1.55, "Altamente ativo":1.725, "Extremamente ativo": 1.9}
+    
+    
+    
     a = int(weight)
     b = int(height)
     c = int(age)
-    resultBMR = 1.55 * (66 + (13.7 * a) + (5 * b) - (6.8 * c))
+    
+    if sexo == "masculino":
+        resultBMR = round(options_dict.get(activityLevel) * (66 + (13.7 * a) + (5 * b) - (6.8 * c)))
+       
+    else:
+        resultBMR = round(options_dict.get(activityLevel) * (655 + (9.6 * a) + (1.8 * b) - (4.7 * c)))
+          
+        
     resultCutting = resultBMR - 400
-    resultBulking = resultBMR + 400
-    return render(request, "home.html", {"resultBMR": resultBMR, "resultCutting": resultCutting, "resultBulking": resultBulking})    
+    resultBulking = resultBMR + 400        
+        
+    
+    return render(request, "home.html", {"resultBMR": resultBMR, "resultCutting": resultCutting, "resultBulking": resultBulking, "sexo":sexo}) 
+   
 
     
 def viewSubtraction(request):

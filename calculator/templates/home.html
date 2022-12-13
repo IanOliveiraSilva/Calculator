@@ -26,20 +26,45 @@
                 <form action="addition" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
-                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    
+                        
+                        Sexo:
+                        <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1"  value="masculino"> 
+                            <label class="form-check-label" for="inlineRadio1">Homem</label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="feminino" > 
+                            <label class="form-check-label" for="inlineRadio2">Mulher</label>
+                          </div>
+                        </div>
+
+                    
+                          
+                
+                          <br><br>Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
                     Enter your height: <input type="text" name="height" placeholder="Height in CM"><br><br>
                     Enter your age:    <input type="text" name="age" placeholder="Age"><br><br>
+                    Nivel de atividade fisica:
+                    <select class="form-select mb-5" name="activityLevel">
+                        <option>Sedentários</option>
+                        <option>Levemente ativo</option>
+                        <option >Moderadamente ativo</option>
+                        <option>Altamente ativo</option>
+                        <option>Extremamente ativo</option>
+                      </select>
                     <input class="btn btn-success"  type="submit" name ="BMRButton">
                         {% if  resultBMR > 0 %}
                         <h4 class="text-warning"> BMR = {{resultBMR}} calories spent  </h4>
                         <h4 class="text-warning"> Cutting = {{resultCutting}} calories to eat </h4>
                         <h4 class="text-warning"> Bulking = {{resultBulking}} calories to eat</h4>
                         {% endif %}
-
-               
-                    <h4 class="text-warning">
+                        
             </div>
 </form>
+
             </div>
         </div>
     </section>
@@ -92,7 +117,7 @@
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
                     Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
-                    <input class="btn btn-success"  type="submit" name ="ProteinButton">
+                    <input class="btn btn-success"  type="submit" name ="CarbsButton">
                     {% if  resultCarbs > 0 %}
                     <h4 class="text-warning"> Carbohydrate = {{resultCarbs}}g </h4>
                         {% endif %}
@@ -111,7 +136,7 @@
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
                     Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
-                    <input class="btn btn-success"  type="submit" name ="ProteinButton">
+                    <input class="btn btn-success"  type="submit" name ="FatButton">
                     {% if  resultFat > 0 %}
                     <h4 class="text-warning"> Fat = {{resultFat}}g </h4>
                         {% endif %}
@@ -127,19 +152,13 @@
             <div class="content-section-heading">
                 <h2 class="mb-5">Calculate your Body Mass Index(BMI)</h2>
                 <h3 class="mb-5"><em>The BMI  is calculated using the formula: weight / (height * height) </em></h3>
-                <form onsubmit=event() action="IMC" method="POST" >
+                <form action="IMC" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
                     Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
                     Enter your height: <input type="text" name="height" placeholder="Height in M"><br><br>
-                    <button class="btn btn-success"  type="button" name ="ProteinButton"></button>
-                    
-                    <script>function(event){
-                        event.preventDefault()    
-                    }
-                    </script>
-
-
+                    <input class="btn btn-success"  type="submit" name ="IMCButton">
+            
                     {% if  resultIMC > 0 %}
                     <h4 class="text-warning"> Your IMC is: {{resultIMC}} </h4>
                     According to the World Health Organization, your BMI is considered {{mensagem}} for your height.   
