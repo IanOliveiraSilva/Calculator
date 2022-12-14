@@ -13,7 +13,11 @@ def viewAddition(request):
     age = request.POST['age']
     activityLevel = request.POST.get('activityLevel')
     sexo = request.POST.get('sexo')
-    options_dict = {"Sedentários": 1.2, "Levemente ativo":1.375, "Moderadamente ativo":1.55, "Altamente ativo":1.725, "Extremamente ativo": 1.9}
+    options_dict = {"Sedentários(pouco ou nenhum exercício)": 1.2, 
+                    "Levemente ativo(exercício leve 1 a 3 dias por semana)":1.375, 
+                    "Moderadamente ativo(exercício moderado, faz esportes 3 a 5 dias por semana)":1.55, 
+                    "Altamente ativo(exercício pesado de 5 a 6 dias por semana)":1.725, 
+                    "Extremamente ativo(exercício pesado diariamente e até 2 vezes por dia)": 1.9}
     
     
     
