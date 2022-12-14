@@ -95,21 +95,21 @@ def viewIMC(request):
         resultIMC = round(resultIMC, 2)
         
         if resultIMC < 16:
-            mensagem = "Severe Thinness"
+            mensagem = "Magreza Grave"
         elif resultIMC < 17:
-            mensagem = "Moderate Thinness"
+            mensagem = "Magreza Moderada"
         elif resultIMC < 18.5:
-            mensagem = "Mild Thinness"
+            mensagem = "Magreza Leve"
         elif resultIMC < 25:
-            mensagem = "Normal"
+            mensagem = "Saudável"
         elif resultIMC < 30:
-            mensagem = "Overweight"
+            mensagem = "Sobrepeso"
         elif resultIMC < 35:
-            mensagem = "Obese Class I"
+            mensagem = "Obesidade Grau I"
         elif resultIMC < 40:
-            mensagem = "Obese Class II"
+            mensagem = "Obesidade Grau II"
         else:
-            mensagem = "Obese Class III"
+            mensagem = "Obesidade Grau III"
             
         return render(request, "home.html", {"resultIMC": resultIMC, "mensagem": mensagem } )    
   

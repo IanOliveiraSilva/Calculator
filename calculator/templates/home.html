@@ -1,28 +1,44 @@
 {% extends 'basic.html' %}
-
+{% load static %}
 
 {% block content %}
 
 
 <body id="page-top">
         
+    <!-- Navigation-->
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#page-top">Calculadora Online</a></li>
+            <li class="sidebar-nav-item"><a href="#page-top">Página Inicial</a></li>
+            <li class="sidebar-nav-item"><a href="#TMB">Taxa Metabolica Basal</a></li>
+            <li class="sidebar-nav-item"><a href="#agua">Água</a></li>
+            <li class="sidebar-nav-item"><a href="#Proteina">Proteina</a></li>
+            <li class="sidebar-nav-item"><a href="#carboidratos">Carboidrato</a></li>
+            <li class="sidebar-nav-item"><a href="#gordura">Gordura</a></li>
+            <li class="sidebar-nav-item"><a href="#imc">Indice de Massa Corporal</a></li>
+        </ul>
+    </nav>
 
     <header class="masthead d-flex align-items-center" >
         <div class="container px-4 px-lg-5 text-center">
-            <h1 class="mb-1">Online Diet Calculator</h1>
-            <h3 class="mb-5"><em>Calculator made to help with your diet</em></h3>
-            <a class="btn btn-primary btn-xl" href="#about">Calculate</a>
+            <h1 class="mb-1">Calculadora de dieta</h1>
+            <h3 class="mb-5"><em>Calculadora feita para ajudar com sua dieta!</em></h3>
+            <a class="btn btn-primary btn-xl" href="#TMB">Calcule</a>
         </div>
     </header>
 
 
-    <section class="content-section bg-primary text-white text-center" id="about">
+    <section class="content-section bg-primary text-white text-center" id="TMB">
         <div class="container px-4 px-lg-5">
             <div class="content-section-heading">
-                <h3 class="text-secondary mb-0">Services</h3>
-                <h2 class="mb-5">Calculate your BMR</h2>
-                <h3 class="mb-5"><em>BMR is calculated using the formula: activity rate factor x {66 + [(13.7 x Weight(kg)) + ( 5 x Height(cm)) – (6.8 x Age(years))]}</em></h3>
-                <h3 class ="mb-5">Basal metabolic rate (BMR) is the amount of energy needed to maintain the body's vital functions over a 24-hour period. It is measured in calories, which is the energy extracted by our body from macronutrients (carbohydrates, proteins and total fats).</h3>
+                <h3 class="text-secondary mb-0">Serviços</h3>
+                <h2 class="mb-5">Calcule a sua TAXA METABOLICA BASAL(TMB)</h2>
+                <h3 class="mb-5"><em>O TMB é calculado usando a formula: 
+                    para homens: fator de atividade x {66 + [(13.7 x peso(kg)) + ( 5 x altura(cm)) – (6.8 x idade(years))]}
+                    para mulheres: fator de atividade x {655 + [(9.6 x peso(kg)) + ( 1.8 x altura(cm)) – (4.7 x idade(years))]}</em></h3>
+                <h3 class ="mb-5">A taxa metabólica basal (BMR) é a quantidade de energia necessária para manter as funções vitais do corpo durante um período de 24 horas. É medida em calorias, que é a energia extraída pelo nosso organismo dos macronutrientes (carboidratos, proteínas e gorduras totais).</h3>
                 <form action="addition" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
@@ -44,22 +60,22 @@
                     
                           
                 
-                          <br><br>Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
-                    Enter your height: <input type="text" name="height" placeholder="Height in CM"><br><br>
-                    Enter your age:    <input type="text" name="age" placeholder="Age"><br><br>
+                          <br><br>Digite o seu peso: <input type="text" name="weight" placeholder="Peso em KG"><br><br>
+                    Digite a sua altura: <input type="text" name="height" placeholder="Altura em CM"><br><br>
+                    Digite a sua idade:    <input type="text" name="age" placeholder="Idade"><br><br>
                     Nivel de atividade fisica:
                     <select class="form-select mb-5" name="activityLevel">
-                        <option>Sedentários</option>
-                        <option>Levemente ativo</option>
-                        <option >Moderadamente ativo</option>
-                        <option>Altamente ativo</option>
-                        <option>Extremamente ativo</option>
+                        <option>Sedentários(pouco ou nenhum exercício)</option>
+                        <option>Levemente ativo(exercício leve 1 a 3 dias por semana)</option>
+                        <option >Moderadamente ativo(exercício moderado, faz esportes 3 a 5 dias por semana)</option>
+                        <option>Altamente ativo(exercício pesado de 5 a 6 dias por semana)</option>
+                        <option>Extremamente ativo(exercício pesado diariamente e até 2 vezes por dia)</option>
                       </select>
                     <input class="btn btn-success"  type="submit" name ="BMRButton">
                         {% if  resultBMR > 0 %}
-                        <h4 class="text-warning"> BMR = {{resultBMR}} calories spent  </h4>
-                        <h4 class="text-warning"> Cutting = {{resultCutting}} calories to eat </h4>
-                        <h4 class="text-warning"> Bulking = {{resultBulking}} calories to eat</h4>
+                        <h4 class="text-warning"> TMB = {{resultBMR}} calorias gastas no dia  </h4>
+                        <h4 class="text-warning"> Se o seu objetivo for perder peso deve-se comer {{resultCutting}} calorias </h4>
+                        <h4 class="text-warning"> Se o seu objetivo for ganhar peso deve-se comer {{resultBulking}} calorias</h4>
                         {% endif %}
                         
             </div>
@@ -69,18 +85,18 @@
         </div>
     </section>
 
-     <section class="content-section bg-primary text-white text-center">
+     <section class="content-section bg-primary text-white text-center" id="agua">
         <div class="container px-4 px-lg-5">
             <div class="content-section-heading">
-                <h2 class="mb-5">Calculate your daily water drink</h2>
-                <h3 class="mb-5"><em>The amount of water intake is calculated using the formula: weight * 35ML </em></h3>
+                <h2 class="mb-5">Calcule quanto de água deve-se beber durante o dia</h2>
+                <h3 class="mb-5"><em>A quantidade de ingestão de água é calculada usando a fórmula: peso * 35ML </em></h3>
                 <form action="Subtraction" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
-                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                        Digite o seu peso: <input type="text" name="weight" placeholder="Peso em KG"><br><br>
                     <input class="btn btn-success"  type="submit" name ="WaterButton">
                     {% if  resultWater > 0 %}
-                    <h4 class= "text-warning"> Water = {{resultWater}}L </h4>
+                    <h4 class= "text-warning"> Você deve beber = {{resultWater}}L de água diariamente </h4>
                         {% endif %}
             </div>
 </form>
@@ -88,18 +104,18 @@
         </div>
     </section>
 
-    <section class="content-section bg-primary text-white text-center">
+    <section class="content-section bg-primary text-white text-center" id="Proteina">
         <div class="container px-4 px-lg-5">
             <div class="content-section-heading">
-                <h2 class="mb-5">Calculate your daily protein eat</h2>
-                <h3 class="mb-5"><em>The amount of protein intake is calculated using the formula: weight * 0.8 </em></h3>
+                <h2 class="mb-5">Calcule quanto de proteina deve-se comer na sua dieta</h2>
+                <h3 class="mb-5"><em>A quantidade de proteína ingerida é calculada usando a fórmula: peso * 0,8 </em></h3>
                 <form action="Division" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
-                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                        Digite o seu peso: <input type="text" name="weight" placeholder="Peso em KG"><br><br>
                     <input class="btn btn-success"  type="submit" name ="ProteinButton">
                     {% if  resultProtein > 0 %}
-                    <h4 class="text-warning"> Protein = {{resultProtein}}g </h4>
+                    <h4 class="text-warning"> Você deve comer = {{resultProtein}}g de proteina </h4>
                         {% endif %}
             </div>
 </form>
@@ -108,18 +124,18 @@
     </section>
 
 
-    <section class="content-section bg-primary text-white text-center">
+    <section class="content-section bg-primary text-white text-center" id="carboidratos">
         <div class="container px-4 px-lg-5">
             <div class="content-section-heading">
-                <h2 class="mb-5">Calculate your daily carbohydrate eat</h2>
-                <h3 class="mb-5"><em>The amount of protein intake is calculated using the formula: weight * 1 </em></h3>
+                <h2 class="mb-5">Calcule quanto de carboidratos deve-se comer na sua dieta</h2>
+                <h3 class="mb-5"><em>A quantidade de proteína ingerida é calculada usando a fórmula: peso * 1 </em></h3>
                 <form action="Multiplication" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
-                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    Digite o seu peso: <input type="text" name="weight" placeholder="Peso em KG"><br><br>
                     <input class="btn btn-success"  type="submit" name ="CarbsButton">
                     {% if  resultCarbs > 0 %}
-                    <h4 class="text-warning"> Carbohydrate = {{resultCarbs}}g </h4>
+                    <h4 class="text-warning"> Você deve comer = {{resultCarbs}}g de carboidratos </h4>
                         {% endif %}
             </div>
 </form>
@@ -127,18 +143,18 @@
         </div>
     </section>
 
-    <section class="content-section bg-primary text-white text-center">
+    <section class="content-section bg-primary text-white text-center" id="gordura">
         <div class="container px-4 px-lg-5">
             <div class="content-section-heading">
-                <h2 class="mb-5">Calculate your daily fat eat</h2>
-                <h3 class="mb-5"><em>The amount of protein intake is calculated using the formula: weight * 0.4 </em></h3>
+                <h2 class="mb-5">Calcule quanto de gordura deve-se comer na sua dieta</h2>
+                <h3 class="mb-5"><em>A quantidade de proteína ingerida é calculada usando a fórmula: peso * 0,4 </em></h3>
                 <form action="Fat" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
-                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
+                    Digite o seu peso: <input type="text" name="weight" placeholder="Peso em KG"><br><br>
                     <input class="btn btn-success"  type="submit" name ="FatButton">
                     {% if  resultFat > 0 %}
-                    <h4 class="text-warning"> Fat = {{resultFat}}g </h4>
+                    <h4 class="text-warning"> Você deve comer = {{resultFat}}g de gordura</h4>
                         {% endif %}
                     
             </div>
@@ -147,21 +163,21 @@
         </div>
     </section>
 
-    <section class="content-section bg-primary text-white text-center">
+    <section class="content-section bg-primary text-white text-center" id="imc">
         <div class="container px-4 px-lg-5">
             <div class="content-section-heading">
-                <h2 class="mb-5">Calculate your Body Mass Index(BMI)</h2>
-                <h3 class="mb-5"><em>The BMI  is calculated using the formula: weight / (height * height) </em></h3>
+                <h2 class="mb-5">Calcule o seu INDICE DE MASSA CORPORAL(IMC)</h2>
+                <h3 class="mb-5"><em>O IMC é calculado pela fórmula: peso / (altura * altura) </em></h3>
                 <form action="IMC" method="POST" >
                     {% csrf_token %}
                     <div class="mb-3 mt-3">
-                    Enter your weight: <input type="text" name="weight" placeholder="Weight"><br><br>
-                    Enter your height: <input type="text" name="height" placeholder="Height in M"><br><br>
+                    Digite o seu peso: <input type="text" name="weight" placeholder="Peso em KG"><br><br>
+                    Digite a sua altura: <input type="text" name="height" placeholder="Altura em M"><br><br>
                     <input class="btn btn-success"  type="submit" name ="IMCButton">
             
                     {% if  resultIMC > 0 %}
-                    <h4 class="text-warning"> Your IMC is: {{resultIMC}} </h4>
-                    According to the World Health Organization, your BMI is considered {{mensagem}} for your height.   
+                    <h4 class="text-warning"> Seu IMC é: {{resultIMC}} </h4>
+                    Segundo a Organização Mundial da Saúde, seu IMC é considerado <h2>{{mensagem}}</h2> para sua altura.  
                         {% endif %}
 
             </div>
@@ -171,14 +187,17 @@
     </section>
    
     
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
-
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="scripts/index.js"></script>
+  
+ 
+    
 </body>
-
-
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Core theme JS-->
+   <script
+   type="text/javascript"
+   src='{% static "/scripts/index.js" %}'>
+   </script>
 {% endblock %}
