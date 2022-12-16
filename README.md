@@ -54,7 +54,7 @@ Entre na pasta do projeto e rode o servidor
 ## Heroku
 
 Projeto com Deploy no HEROKU
-- [heroku](https://health-calculator-django.herokuapp.com/)
+- [link do site](https://health-calculator-django.herokuapp.com/)
 
 ## Autor
 
